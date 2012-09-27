@@ -14,9 +14,11 @@ Special thanks to [Matthew Dorey](https://twitter.com/mattischrome) who did the 
 
 ## Outbrain Setup:
 
-You will first want to go to [setup an Outbrain account](https://my.outbrain.com/register). This allows you to view detailed reports and change some advanced settings.
+You will first want to go to [setup an Outbrain account](https://my.outbrain.com/register). This allows you to view detailed reports and change some advanced settings.  This is not mandatory but it gives you some control of the widget.
 
-Once registered, in your Dashboard:
+Additionally, if you have claimed your blog on a previous platform (i.e you are migrating to Octopress from elsewhere) then you do not need to 'claim' your blog again and can skip this.
+
+Once registered with Outbrain, in your Dashboard:
 * Choose Manage Blogs.
 * Then choose Add Blog.
 * Under Install Widget, select yes.
@@ -36,7 +38,7 @@ It will look like this:
 </script>
 ```
 
-You want to grab the _OBKey_ and _OBCTm_ values and with that you are ready to run this script.
+You want to grab the _OBKey_ value and with that you are ready to run this script.
 
 ## Installation:
 
@@ -56,7 +58,7 @@ Run it.
 
 `./outbrain-on-octopress.sh`
 
-Enter the OBKey and OBCTm values and the script will run and exit.
+Enter the _OBKey_ value if needed and the script will run and exit.
 
 From here you need to do what you normally do in octopress when making a change.
 
@@ -65,6 +67,9 @@ From here you need to do what you normally do in octopress when making a change.
 ## A Few Notes:
 
 * This script is intend to install the Outbrain recomendations widget on installations of Octopress 2.0 only.
-* Also note that this script, as of yet, is not idempotent nor will it undo echo changes made to your Octopress installation.
+
+* Also note that this script, as of yet, is not idempotent nor will it undo changes made to your Octopress installation.
+
 * There is one change made to `source/_includes/post/sharing.html` that will not survive an upgrade of Octopress, but is trivial to re-implement, just take a peek at the bash script.
+
 * Lastly, my employer, Outbrain, Inc., provides no warranties or guarantees on this script, you should certainly back up your site before running."

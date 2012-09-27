@@ -35,15 +35,14 @@
 #   <script LANGUAGE="JavaScript" src="http://widgets.outbrain.com/claim.js">
 #   </script>
 #
-# You want to grab the OBKey and OBCTm values and with that you are ready to run
-# this script.
+# You want to grab the OBKey value and with that you are ready to runthis script.
 
 # Installation:
 # cd to your octopress directory.
 # wget https://raw.github.com/nmilford/outbrain-on-octopress/master/outbrain-on-octopress.sh
 # chmod +x ./outbrain-on-octopress.sh
 # ./outbrain-on-octopress.sh
-# Enter the OBKey and OBCTm values
+# Enter the OBKey is needed.
 # rake generate
 # rake preview
 
@@ -75,19 +74,27 @@ echo
 
 read -s -n 1 -p "Otherwise, press any key to continue . . ."
 echo
+echo
 
-# Grab user info.
-read -p "Enter your 'OBKey' value and hit [ENTER]: " OBKey
-read -p "Enter your 'OBCTm' value and hit [ENTER]: " OBCTm
+echo "Outbrain allows you to 'claim' your blog. You do not necessarily need to"
+echo "to do so, but it allows you to view detailed reports and change some"
+echo "advanced settings.  Additionally, if you have claimed your blog on a"
+echo "previous platform (i.e you are migrating to Octopress from elsewhere) then"
+echo "you do not need to 'claim' your blog again."
+echo
+echo "If you need/wish to claim your blog you can see how to get your claim key"
+echo "from the README.md file associated with this project and enter it below." 
+echo "Otherwise, you can leave it blank."
+echo
+read -p "Enter your claim key (OBKey) or leave blank and hit [ENTER]: " OBKey
 echo
 
 # This stanza will add the Outbrain config to your _config.yml
 cat <<EOF >> _config.yml
 
-# Outbrain Widget
+# Outbrain Recommendation Widget
 outbrain: true
 outbrain_OBKey: $OBKey
-outbrain_OBCTm: $OBCTm
 EOF
 
 # Modifies the sharing.html template to include the outbrain settings. This is
@@ -99,43 +106,46 @@ echo "    Note: This is the only change that can be overwritten when upgrading"
 echo "          Octopress.  In Octopress 2.1 this will be resolved."
 cat <<EOF >> source/_includes/post/sharing.html
 
-{% comment %} Include the Outbrain widget below the sharing buttons. {% endcomment %}
+{% comment %} 
+  Include the Outbrain widget below the sharing buttons.  This will get
+  over written if you upgrade Octopress.
+{% endcomment %}
 {% include custom/outbrain.html %}
 EOF
 
 # Dumps the Outbrain code into a custom template that will not be overwritten.
 echo "*** Creating source/_includes/custom/outbrain.html to handle the widget code."
 cat <<EOF > source/_includes/custom/outbrain.html
-{% comment %} Enables the Outbrain recomendation widget. {% endcomment %}
+{% comment %}
+  Enables the Outbrain recomendation widget. This code uses the newer Outbrain
+  'Nano' widget rather than the regular one given out on the Outbrain signup
+  page.  It is smaller, and loads faster :)
+{% endcomment %}
 {% if site.outbrain %}
-<script language='JavaScript'>
-var OB_langJS = 'http://widgets.outbrain.com/lang_en.js';
-var OBITm = '1348616024968';
-var OB_raterMode = 'none';
-var OB_recMode = 'strip'; 
-var OutbrainPermaLink='{{ site.url }}{{ page.url }}'; 
-if ( typeof(OB_Script)!='undefined' )OutbrainStart();
-else { var OB_Script = true;
-var str = unescape("%3Cscript src=\'http://widgets.outbrain.com/OutbrainRater.js\' type=\'text/javascript\'%3E%3C/script%3E");
-document.write(str); }
-</script>
+<div class="OUTBRAIN" data-src="{{ site.url }}{{ page.url }}" data-widget-id="AR_1" data-ob-template="CustomTemplate"></div>
+<script type="text/javascript" async="async" src="http://widgets.outbrain.com/outbrain.js"></script> 
 {% endif %}
 EOF
 
+
+if [ $OBKey ]; then
 # Dumps the Outbrain Blog Claim code near the closing </body> tag.
 echo "*** Modifying source/_includes/custom/footer.html to place the blog claim code."
 cat <<EOF >> source/_includes/custom/footer.html
 
-{% comment %} If you haven't used the Outbrain Widget before, the code here will
-              claim your blog. {% endcomment %}
+{% comment %}
+  If you have not used the Outbrain Widget before, the code here will claim your
+  blog for your Outbrain account.
+{% endcomment %}
 {% if site.outbrain %}
 <input type="hidden" name="OBKey" value='{{ site.outbrain_OBKey }}'/> 
 <script LANGUAGE="JavaScript">
-var OBCTm='{{ site.outbrain_OBCTm }}';
+var OBCTm='1348616024977';
 </script>
 <script LANGUAGE="JavaScript" src="http://widgets.outbrain.com/claim.js"></script>
 {% endif %}
 EOF
+fi
 
 # Modifies the CSS to fix a small issue with the outbrain thumbnail widget.
 echo "*** Modifying sass/custom/_styles.scss to improve the widget's look."
@@ -149,3 +159,4 @@ cat <<EOF >> sass/custom/_styles.scss
 EOF
 
 echo "*** Process is complete. Have a nice day :)"
+echo
