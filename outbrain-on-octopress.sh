@@ -119,14 +119,13 @@ cat <<EOF > source/_includes/custom/outbrain.html
 {% comment %}
   Enables the Outbrain recomendation widget. This code uses the newer Outbrain
   'Nano' widget rather than the regular one given out on the Outbrain signup
-  page.  It is smaller, and loads faster :)
+  page.  It is smaller and loads faster! :)
 {% endcomment %}
 {% if site.outbrain %}
-<div class="OUTBRAIN" data-src="{{ site.url }}{{ page.url }}" data-widget-id="AR_1" data-ob-template="CustomTemplate"></div>
+<div class="OUTBRAIN" data-src="{{ site.url }}{{ page.url }}"></div>
 <script type="text/javascript" async="async" src="http://widgets.outbrain.com/outbrain.js"></script> 
 {% endif %}
 EOF
-
 
 if [ $OBKey ]; then
 # Dumps the Outbrain Blog Claim code near the closing </body> tag.
@@ -156,6 +155,10 @@ cat <<EOF >> sass/custom/_styles.scss
   white-space: normal;
   word-wrap: break-word;
 }
+
+// A fix for the Outbrain nano widget. 
+.OUTBRAIN ul {list-style-type: none;}
+.OUTBRAIN ul li.odb_li {width: 115px; float: left; margin-right: 10px;}
 EOF
 
 echo "*** Process is complete. Have a nice day :)"
