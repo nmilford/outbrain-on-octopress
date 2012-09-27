@@ -141,7 +141,7 @@ EOF
 echo "*** Modifying sass/custom/_styles.scss to improve the widget's look."
 cat <<EOF >> sass/custom/_styles.scss
 
-# A fix for the Outbrain thumbnail widget. 
+// A fix for the Outbrain thumbnail widget. 
 .force-wrap {
   white-space: normal;
   word-wrap: break-word;
