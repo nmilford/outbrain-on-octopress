@@ -63,15 +63,15 @@ echo "                                     on Octopress"
 echo ""
 echo "This script is intend to install the Outbrain recomendations widget on"
 echo "installations of Octopress 2.0 only."
-echo ""
+echo
 echo "Also note that this script, as of yet, is not idempotent nor will it undo"
 echo "changes made to your Octopress installation."
-echo ""
+echo
 echo "Outbrain, Inc. provides no warranties or guarantees on this script, you"
 echo "should certainly back up your site before running."
-echo ""
+echo
 echo "If you find this unacceptable please press CTRL+C to exit."
-echo ""
+echo
 
 read -s -n 1 -p "Otherwise, press any key to continue . . ."
 echo
