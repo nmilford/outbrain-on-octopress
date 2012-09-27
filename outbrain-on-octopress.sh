@@ -60,7 +60,7 @@ echo "            | (_) | |_| | |_| |_) | | | (_| | | | | |"
 echo "             \___/ \__,_|\__|_.__/|_|  \__'_|_|_| |_|"
 echo "                                     on Octopress"
 echo ""
-echo "This script is intend to install the Outbrain recomendations widget on"
+echo "This script is intended to install the Outbrain recomendations widget on"
 echo "installations of Octopress 2.0 only."
 echo
 echo "Also note that this script, as of yet, is not idempotent nor will it undo"
