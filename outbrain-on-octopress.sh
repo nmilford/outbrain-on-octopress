@@ -40,7 +40,9 @@
 
 # Installation:
 # cd to your octopress directory.
-# run 'curl https://raw.github.com/nmilford/outbrain-on-octopress/master/outbrain-on-octopress.sh | bash'
+# wget https://raw.github.com/nmilford/outbrain-on-octopress/master/outbrain-on-octopress.sh
+# chmod +x ./outbrain-on-octopress.sh
+# ./outbrain-on-octopress.sh
 # Enter the OBKey and OBCTm values
 # rake generate
 # rake preview
@@ -50,7 +52,6 @@ if [ ! -f _config.yml ];then
   echo "Please run this script from your Octopress site root directory."
   exit -1
 fi
-
 
 echo "                         _   _               _       "
 echo "                        | | | |             (_)      "
@@ -72,7 +73,7 @@ echo ""
 echo "If you find this unacceptable please press CTRL+C to exit."
 echo ""
 
-read -s -n 1 -p "Press any key to continue . . ."
+read -s -n 1 -p "Otherwise, press any key to continue . . ."
 echo
 
 # Grab user info.
