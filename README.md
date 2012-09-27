@@ -12,7 +12,7 @@ A script to simplify the installation of the [Outbrain](http://www.outbrain.com/
 
 Special thanks go out to:
 * [Matthew Dorey](https://twitter.com/mattischrome) who did the initial heavy lifting to get the widget to be placed properly. 
-* [Jackie Jennings](https://twitter.com/ohhijackie) who demystified Outbrain Nano widget. 
+* [Jackie Jennings](https://twitter.com/ohhijackie) who demystified the Outbrain Nano widget. 
 * [Dave Kilsheimer](https://twitter.com/kilsey) who whipped up some CSS to get the widget to render correctly. 
 
 ## Outbrain Setup:
