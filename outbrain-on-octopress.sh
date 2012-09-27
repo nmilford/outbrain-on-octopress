@@ -40,15 +40,30 @@
 
 # Installation:
 # cd to your octopress directory.
-# run 'curl -L curl https://raw.github.com/nmilford/outbrain-on-octopress/master/outbrain-on-octopress.sh | bash'
+# run 'curl https://raw.github.com/nmilford/outbrain-on-octopress/master/outbrain-on-octopress.sh | bash'
 # Enter the OBKey and OBCTm values
 # rake generate
 # rake preview
 
-
-# TODO: 
-# Check for _config.yml as a sanity that your PWD is the octopress dir.
-# Make this idempotent
+echo "                         _   _               _       "
+echo "                        | | | |             (_)      "
+echo "              ___  _   _| |_| |__  _ __ __ _ _ _ __  "
+echo "             / _ \| | | | __| '_ \| '__/ _' | | '_ \ "
+echo "            | (_) | |_| | |_| |_) | | | (_| | | | | |"
+echo "             \___/ \__,_|\__|_.__/|_|  \__'_|_|_| |_|"
+echo "                                     on Octopress"
+echo ""
+echo "This script is intend to install the Outbrain recomendations widget on"
+echo "installations of Octopress 2.0 only."
+echo ""
+echo "Also note that this script, as of yet, is not idempotent nor will it undo"
+echo "changes made to your Octopress installation."
+echo ""
+echo "Outbrain, Inc. provides no warranties or guarantees on this script, you"
+echo "should certainly back up your site before running."
+echo ""
+echo "If you find this unacceptable please press CTRL+C to exit."
+echo ""
 
 # Sanities go here.
 if [ ! -f _config.yml ];then
@@ -56,11 +71,9 @@ if [ ! -f _config.yml ];then
   exit -1
 fi
 
-# Grab 
-echo -n "Enter your 'OBKey' value and hit [ENTER]: "
-read OBKey
-echo -n "Enter your 'OBCTm' value and hit [ENTER]: "
-read OBCTm
+# Grab user info.
+read -p "Enter your 'OBKey' value and hit [ENTER]: " OBKey
+read -p "Enter your 'OBCTm' value and hit [ENTER]: " OBCTm
 
 # This stanza will add the Outbrain config to your _config.yml
 cat <<EOF >> _config.yml
