@@ -45,6 +45,13 @@
 # rake generate
 # rake preview
 
+# Sanities go here.
+if [ ! -f _config.yml ];then
+  echo "Please run this script from your Octopress site root directory."
+  exit -1
+fi
+
+
 echo "                         _   _               _       "
 echo "                        | | | |             (_)      "
 echo "              ___  _   _| |_| |__  _ __ __ _ _ _ __  "
@@ -65,11 +72,8 @@ echo ""
 echo "If you find this unacceptable please press CTRL+C to exit."
 echo ""
 
-# Sanities go here.
-if [ ! -f _config.yml ];then
-  echo "Please run this script from your Octopress site root directory."
-  exit -1
-fi
+read -s -n 1 -p "Press any key to continue . . ."
+echo
 
 # Grab user info.
 read -p "Enter your 'OBKey' value and hit [ENTER]: " OBKey
