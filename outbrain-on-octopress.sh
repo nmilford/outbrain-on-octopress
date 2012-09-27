@@ -40,11 +40,27 @@
 
 # Installation:
 # cd to your octopress directory.
-# run 'curl -L https://pathtp/this.script | bash
+# run 'curl -L curl https://raw.github.com/nmilford/outbrain-on-octopress/master/outbrain-on-octopress.sh | bash'
 # Enter the OBKey and OBCTm values
 # rake generate
 # rake preview
 
+
+# TODO: 
+# Check for _config.yml as a sanity that your PWD is the octopress dir.
+# Make this idempotent
+
+# Sanities go here.
+if [ ! -f _config.yml ];then
+  echo "Please run this script from your Octopress site root directory."
+  exit -1
+fi
+
+# Grab 
+echo -n "Enter your 'OBKey' value and hit [ENTER]: "
+read OBKey
+echo -n "Enter your 'OBCTm' value and hit [ENTER]: "
+read OBCTm
 
 # This stanza will add the Outbrain config to your _config.yml
 cat <<EOF >> _config.yml
@@ -52,13 +68,16 @@ cat <<EOF >> _config.yml
 # Outbrain Widget
 outbrain: true
 outbrain_OBKey: $OBKey
-outbrain_OBCTm: $OBCTm7
+outbrain_OBCTm: $OBCTm
 EOF
 
 # Modifies the sharing.html template to include the outbrain settings. This is
 # the only way it seems to place the Outbrain widget properly.
 #
 # THIS WILL GET OVER WRITTEN WHEN UPGRADING OCTOPRESS.
+echo "*** Modifying source/_includes/post/sharing.html place the widget."
+echo "    Note: This is the only change that can be overwritten when upgrading"
+echo "          Octopress.  In Octopress 2.1 this will be resolved."
 cat <<EOF >> source/_includes/post/sharing.html
 
 # Include the Outbrain widget below the sharing buttons.
@@ -66,6 +85,7 @@ cat <<EOF >> source/_includes/post/sharing.html
 EOF
 
 # Dumps the Outbrain code into a custom template that will not be overwritten.
+echo "*** Creating source/_includes/custom/outbrain.html to handle the widget code."
 cat <<EOF > source/_includes/custom/outbrain.html
 
 # Enables the Outbrain recomendation widget.
@@ -85,10 +105,11 @@ document.write(str); }
 EOF
 
 # Dumps the Outbrain Blog Claim code near the closing </body> tag.
+echo "*** Modifying source/_includes/custom/footer.html to place the blog claim code."
 cat <<EOF >> source/_includes/custom/footer.html
 
-# If you haven't used the Outbrain Widget before, you can use the code here to
-# claim your blog.
+# If you haven't used the Outbrain Widget before, the code here will claim your 
+# blog.
 {% if site.outbrain %}
 <input type="hidden" name="OBKey" value='{{ site.outbrain_OBKey }}'/> 
 <script LANGUAGE="JavaScript">
@@ -98,15 +119,15 @@ var OBCTm='{{ site.outbrain_OBCTm }}';
 {% endif %}
 EOF
 
-# Modifies the CSS to fix a small issue with the Outbrain thumbnail widget.
+# Modifies the CSS to fix a small issue with the outbrain thumbnail widget.
+echo "*** Modifying sass/custom/_styles.scss to improve the widget's look."
 cat <<EOF >> sass/custom/_styles.scss
 
-# A Fix for Outbrain as the defaults cause the Thumnail widget to look awkward. 
+# A fix for the Outbrain thumbnail widget. 
 .force-wrap {
   white-space: normal;
   word-wrap: break-word;
 }
 EOF
 
-
-
+echo "*** Process is complete. Have a nice day :)"
