@@ -79,6 +79,7 @@ echo
 # Grab user info.
 read -p "Enter your 'OBKey' value and hit [ENTER]: " OBKey
 read -p "Enter your 'OBCTm' value and hit [ENTER]: " OBCTm
+echo
 
 # This stanza will add the Outbrain config to your _config.yml
 cat <<EOF >> _config.yml
@@ -98,15 +99,14 @@ echo "    Note: This is the only change that can be overwritten when upgrading"
 echo "          Octopress.  In Octopress 2.1 this will be resolved."
 cat <<EOF >> source/_includes/post/sharing.html
 
-# Include the Outbrain widget below the sharing buttons.
+{% comment %} Include the Outbrain widget below the sharing buttons. {% endcomment %}
 {% include custom/outbrain.html %}
 EOF
 
 # Dumps the Outbrain code into a custom template that will not be overwritten.
 echo "*** Creating source/_includes/custom/outbrain.html to handle the widget code."
 cat <<EOF > source/_includes/custom/outbrain.html
-
-# Enables the Outbrain recomendation widget.
+{% comment %} Enables the Outbrain recomendation widget. {% endcomment %}
 {% if site.outbrain %}
 <script language='JavaScript'>
 var OB_langJS = 'http://widgets.outbrain.com/lang_en.js';
@@ -126,8 +126,8 @@ EOF
 echo "*** Modifying source/_includes/custom/footer.html to place the blog claim code."
 cat <<EOF >> source/_includes/custom/footer.html
 
-# If you haven't used the Outbrain Widget before, the code here will claim your 
-# blog.
+{% comment %} If you haven't used the Outbrain Widget before, the code here will
+              claim your blog. {% endcomment %}
 {% if site.outbrain %}
 <input type="hidden" name="OBKey" value='{{ site.outbrain_OBKey }}'/> 
 <script LANGUAGE="JavaScript">
