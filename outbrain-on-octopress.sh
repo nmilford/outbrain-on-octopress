@@ -157,8 +157,22 @@ cat <<EOF >> sass/custom/_styles.scss
 }
 
 // A fix for the Outbrain nano widget. 
-.OUTBRAIN ul {list-style-type: none;}
-.OUTBRAIN ul li.odb_li {width: 115px; float: left; margin-right: 10px;}
+.OUTBRAIN ul {
+  list-style-type: none;
+}
+
+.OUTBRAIN ul li.odb_li {
+  font-family: $serif;
+  line-height: 1.2em;
+  font-size: .8em;
+  width: 115px;
+  float: left;
+  margin-right: 10px;
+}
+.OUTBRAIN a:link { color: $text-color; text-decoration:none;}
+.OUTBRAIN a:visited { color: $text-color; text-decoration:none;}
+.OUTBRAIN a:hover { color: $text-color; text-decoration:none;}
+.OUTBRAIN a:active { color: $text-color; text-decoration:none;}
 EOF
 
 echo "*** Process is complete. Have a nice day :)"
