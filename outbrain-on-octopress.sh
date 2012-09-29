@@ -206,6 +206,7 @@ do_install() {
 }
 
 do_uninstall() {
+  run_sanaties
   confirm_uninstall
   echo
   echo "Removing Outbrain changes to:"
