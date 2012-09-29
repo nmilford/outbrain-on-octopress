@@ -59,7 +59,7 @@ Make it executable.
 
 Run it.
 
-`./outbrain-on-octopress.sh`
+`./outbrain-on-octopress.sh install`
 
 Enter the _OBKey_ value if needed and the script will run and exit.
 
@@ -67,11 +67,17 @@ From here you need to do what you normally do in octopress when making a change.
 
 `rake generate && rake preview`
 
+## Uninstall
+
+`./outbrain-on-octopress.sh uninstall`
+
+This presumes your install has not changed so much.  It deletes the custom include with the outbrin code, then deletes any line from the files the install touches containing the word 'outbrain'.
+
 ## A Few Notes:
 
 * This script is intend to install the Outbrain recomendations widget on installations of Octopress 2.0 only.
 
-* Also note that this script, as of yet, is not idempotent nor will it undo changes made to your Octopress installation.
+* Also note that this script, as of yet, is not idempotent so running it multiple times will apply it multiple times. However, running the install should clean it up if you do.
 
 * There is one change made to `source/_includes/post/sharing.html` that will not survive an upgrade of Octopress, but is trivial to re-implement, just take a peek at the bash script.
 
