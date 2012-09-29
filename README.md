@@ -71,7 +71,7 @@ From here you need to do what you normally do in octopress when making a change.
 
 `./outbrain-on-octopress.sh uninstall`
 
-This presumes your install has not changed so much.  It deletes the custom include with the outbrin code, then deletes any line from the files the install touches containing the word 'outbrain'.
+This presumes your install has not changed so much.  It deletes the custom include with the outbrain code, then deletes any line from the files the install touches containing the word 'outbrain'.
 
 ## A Few Notes:
 
